@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Request\CreatePostRequest;
-use App\Http\Request\EditPostRequest;
+use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\EditPostRequest;
 
 use App\Models\Post;
+use Carbon\Carbon;
 
 
 class PostController extends Controller
@@ -54,6 +55,8 @@ class PostController extends Controller
 //        $request->file('photo')->move('images', $newName);
         
         $post->photo = 'pic01.jpg';
+        
+//        $post->created_at = Carbon::now();
         
         $post->save();
         

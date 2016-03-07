@@ -13,7 +13,7 @@ class EditUserRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,20 @@ class EditUserRequest extends Request
     {
         return [
             //
+            'firstname'=>'required',
+            'lastname'=>'required',
+            'email'=>'required|unique:users,email,' . $this->route('users')
+        ];
+    }
+    
+    public function messages()
+    {
+        return [
+            //
+            'firstname.required'=>'Fill this up',
+            'lastname.required'=>'Fill this up',
+            'email.required'=>'Fill this up',
+            'email.unique'=>'Already Taken'
         ];
     }
 }

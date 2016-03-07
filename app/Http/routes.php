@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
     });
     
     Route::resource('posts', "PostController");
-    
+    Route::resource('comments', "CommentController");
     Route::resource('users', "UserController");
     
     Route::get('login', "LoginController@showLoginForm");    

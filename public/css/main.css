@@ -2597,6 +2597,7 @@
 				.post > header .title h2 {
 					font-weight: 900;
 					font-size: 1.5em;
+                    overflow: hidden;
 				}
 
 				.post > header .title > :last-child {
@@ -2609,6 +2610,10 @@
 				min-width: 17em;
 				text-align: right;
 				width: 17em;
+			}
+
+            .post > header .meta span{
+				font-size: .8em
 			}
 
 				.post > header .meta > * {
@@ -3429,3 +3434,11 @@
 			}
 
 		}
+
+.comments{
+    display: block;    
+}
+
+.comments span{
+    float: right;
+}

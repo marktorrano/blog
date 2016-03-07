@@ -24,7 +24,7 @@
                                 <li><a href="{{url('users/create')}}">Register</a></li>
                                 @else
                                 <li><a href="{{url('logout')}}">Logout</a></li>
-                                <li><a href="{{url('users/1')}}">User Details</a></li>
+                                <li><a href="{{url('users/'.Auth::user()->id)}}">User Details</a></li>
                                 @endif
 								
 								
@@ -48,6 +48,7 @@
 						<!-- Links -->
 							<section>
 								<ul class="links">
+								@if(!Auth::check())
 									<li>
 										<a href="{{url('login')}}">
 											<h3>Log in</h3>
@@ -58,6 +59,18 @@
 											<h3>Register</h3>
 										</a>
 									</li>
+								@else
+								    <li>
+										<a href="{{url('logout')}}">
+											<h3>Logout</h3>
+										</a>
+									</li>
+									<li>
+										<a href="{{url('users/'.Auth::user()->id)}}">
+											<h3>User Details</h3>
+										</a>
+									</li>
+								@endif
 									
 								</ul>
 							</section>

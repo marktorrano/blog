@@ -11,6 +11,10 @@ class Post extends Model
         'title', 'subtitle', 'content','photo'
     ];
     
+    protected $dates = [
+        'created_at', 'updated_at', 'deleted_at'    
+    ];
+    
     public function comment(){
     
         return $this->hasMany('App\Models\Comment');

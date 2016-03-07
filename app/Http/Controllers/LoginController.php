@@ -19,6 +19,7 @@ class LoginController extends Controller
     public function processLogin(LoginRequest $request){
         
         $credential = $request->only('username','password');
+        
                 
         if(\Auth::attempt($credential)){
             
