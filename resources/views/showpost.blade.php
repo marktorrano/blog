@@ -23,7 +23,7 @@
             <p>{{$post->content}}</p>
             
             <?php 
-                $comments = \App\Models\Comment::find($post->id)->post->comment;   
+                $comments = \App\Models\Post::find($post->id)->comment;   
                 
             ?>
             
@@ -35,6 +35,7 @@
                 
             </div>
             @endforeach
+            
             <h2>Comments</h2>
             
             
