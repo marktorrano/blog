@@ -72,6 +72,10 @@
 											<h3>User Details</h3>
 										</a>
 									</li>
+									<li>
+										<a href="{{url('posts/create')}}"><h3>New Post</h3></a>
+									</li>
+									
 								@endif
 									
 								</ul>
@@ -123,6 +127,7 @@
 			<script src="{{asset('js/jquery.min.js')}}"></script>
 			<script src="{{asset('js/skel.min.js')}}"></script>
 			<script src="{{asset('js/util.js')}}"></script>
+			<script src="{{asset('js/moment.min.js')}}"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="{{asset('js/main.js')}}"></script>
 

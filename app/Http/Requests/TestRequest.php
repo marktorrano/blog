@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CreateCommentRequest extends Request
+class TestRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CreateCommentRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,17 +25,6 @@ class CreateCommentRequest extends Request
     {
         return [
             //
-            
-            'content'=>'required'
-        ];
-    }
-    
-    public function messages()
-    {
-        return [
-            //
-            
-            'content.required'=>'Please fill this up'
         ];
     }
 }

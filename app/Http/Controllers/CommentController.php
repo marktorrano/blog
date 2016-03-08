@@ -11,6 +11,7 @@ use App\Http\Requests\EditCommentRequest;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -45,11 +46,10 @@ class CommentController extends Controller
         //
         $comment = Comment::create($request->all());
         
-        $comment->save();
-        
-//        $post = Post::find($request->post_id);
-        
-        return "success";
+        $input = $request->all();
+        $input['created_at'] =  $comment->created_at->diffForHumans();
+                            
+        return $input;
         
     }
 
@@ -95,6 +95,7 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
+        
         $comment = Comment::find($id);
         
         $comment->delete();

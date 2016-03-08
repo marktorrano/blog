@@ -27,6 +27,9 @@ Route::group(['middleware' => ['web']], function () {
     //
     
     Route::get('/', function () {
+        
+        return Auth::user();
+        
     });
     
     Route::resource('posts', "PostController");

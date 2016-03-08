@@ -10,30 +10,63 @@ $(document).ready(function(){
        headers:  {'X-CSRF-TOKEN': $('[name="_token"]').val()}
     });
 
+//    console.log($('time').html());
+    
+    var momentDate = moment($('time').html());
+        
+    $('time').html(momentDate.format("MMM Do YYYY"))
     
     $('.send').click(function () {        
         $('form').submit(function (e) {
             e.preventDefault();
-            var formdata = $(this).serialize();            
-            console.log(formdata);
+            var formdata = $(this).serialize();  
+            formdata['_token'] = $('input[name=_token]').val();
             $.ajax({
                 url: '../comments',
                 type: "POST",
-                data: {
-                    formdata: formdata,
-                    '_token': $('input[name=_token]').val()
-                },
+                data: formdata,
                 success: function (response) {
-                    alert('works');
+                    var user_id = response.user_id;
+                    var post_id = response.post_id;
+                    var content = response.content;
+                    var firstname = response.firstname;
+                    var lastname = response.lastname;
+                    var created_at = response.created_at;
+                    
+                    var newHtml = '<div class="comments"><h3>'+firstname+' '+lastname+'</h3><p>'+content+'</p><span class="diffForHumans">'+created_at+'</span></div>';
+                    
+                    $('.comments').parent().append(newHtml);
                 }
             });
+            
+            $(this).find('textarea').val('');
         });
     });
     
-//    console.log($('.pagination').find("li").siblings().last().find('a').attr('href')); 
+    $('.delete').click(function () {        
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var formdata = $(this).serialize();  
+            formdata['_token'] = $('input[name=_token]').val();
+            $.ajax({
+                url: '../comments',
+                type: "POST",
+                data: formdata,
+                success: function (response) {
+                    
+                    var newHtml = '<div class="comments"><h3>'+firstname+' '+lastname+'</h3><p>'+content+'</p><span class="diffForHumans">'+created_at+'</span></div>';
+                    
+                    $('.comments').parent().append(newHtml);
+                }
+            });
+            //remove div
+        });
+    });
+    
+
     if($('.pagination').find("li").first().find('a').attr('href')){
         $('.pagination-not-laravel').find('li').find('a').removeClass('disabled');
-        var linkPrev =  $('.pagination').find("li").siblings().first().find('a').attr('href')      
+        var linkPrev =  $('.pagination').find("li").siblings().first().find('a').attr('href');      
         $('.pagination-not-laravel').find('li').find('a').attr('href', linkPrev);
     }
     if($('.pagination').find("li").siblings().last().find('a').attr('href') == undefined){

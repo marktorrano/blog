@@ -11,7 +11,7 @@
             </div>
             <div class="meta">
                 <span>Posted</span>
-                <time class="published" datetime="2015-11-01">{{$post->created_at}}</time>
+                <time class="published" datetime="2015-11-01" >{{$post->created_at}}</time>
                 <a href="#" class="author"><span class="name"></span></a>
             </div>
         </header>

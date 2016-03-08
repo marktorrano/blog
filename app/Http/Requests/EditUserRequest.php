@@ -27,7 +27,7 @@ class EditUserRequest extends Request
             //
             'firstname'=>'required',
             'lastname'=>'required',
-            'email'=>'required|unique:users,email,' . $this->route('users')
+            'email'=>'required|email|unique:users,email,' . $this->route('users')
         ];
     }
     

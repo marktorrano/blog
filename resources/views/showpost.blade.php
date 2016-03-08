@@ -18,18 +18,18 @@
                     
                 </div>
                 <div class="meta">
-                    <time class="published" datetime="2015-11-01">{{$post->created_at->diffForHumans()}}</time>
-                    <a href="#" class="author"><span class="name"></span><img src="{{url('images/avatar.jpg')}}" alt="" /></a>
+                    <span>Posted</span>
+                    <time class="published" datetime="2015-11-01">{{$post->created_at}}</time>
+{{--                <a href="#" class="author"><span class="name"></span><img src="{{url('images/avatar.jpg')}}" alt="" /></a> --}}
                 </div>
             </header>
             <a href="#" class="image featured"><img src="{{url('images/'. $post->photo)}}" alt="" /></a>
             <p>{{$post->content}}</p>
             <h2>Comments</h2>
             <?php 
-                $comments = \App\Models\Post::find($post->id)->comment;   
-                
+                $comments = \App\Models\Post::find($post->id)->comment;                   
             ?>
-            
+            <div class="comment-container">
             @foreach($comments as $comment)
             <div class="comments">
                 @if(Auth::user()->admin_status == 1 || (Auth::user()->id == $comment->user->id))
@@ -44,14 +44,18 @@
                 
             </div>
             @endforeach
-  
-            <br>
+              </div>
+              <br>
+              <span>Reply to this post</span>
+            
             {!! Form::open(array('method' => 'POST', 'action' => 'CommentController@store')) !!}
             {!! Form::textarea('content') !!}
             <br/>
             {!! Form::hidden('post_id', $post->id) !!}
             {!! Form::hidden('user_id', Auth::user()->id) !!}
-            {!! Form::submit('Post', ['class' => 'send']) !!}
+            {!! Form::hidden('firstname', Auth::user()->firstname) !!}
+            {!! Form::hidden('lastname', Auth::user()->lastname) !!}
+            {!! Form::submit('Reply', ['class' => 'send']) !!}
             {!! Form::close() !!}
         
             @if(Auth::user()->admin_status == 1)
