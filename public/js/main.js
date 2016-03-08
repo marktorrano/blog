@@ -4,7 +4,49 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+$(document).ready(function(){
+    
+    $.ajaxSetup({
+       headers:  {'X-CSRF-TOKEN': $('[name="_token"]').val()}
+    });
+
+    
+    $('.send').click(function () {        
+        $('form').submit(function (e) {
+            e.preventDefault();
+            var formdata = $(this).serialize();            
+            console.log(formdata);
+            $.ajax({
+                url: '../comments',
+                type: "POST",
+                data: {
+                    formdata: formdata,
+                    '_token': $('input[name=_token]').val()
+                },
+                success: function (response) {
+                    alert('works');
+                }
+            });
+        });
+    });
+    
+//    console.log($('.pagination').find("li").siblings().last().find('a').attr('href')); 
+    if($('.pagination').find("li").first().find('a').attr('href')){
+        $('.pagination-not-laravel').find('li').find('a').removeClass('disabled');
+        var linkPrev =  $('.pagination').find("li").siblings().first().find('a').attr('href')      
+        $('.pagination-not-laravel').find('li').find('a').attr('href', linkPrev);
+    }
+    if($('.pagination').find("li").siblings().last().find('a').attr('href') == undefined){
+         $('.pagination-not-laravel').find('li').last().find('a').addClass('disabled');
+    }
+    var linkNext = $('.pagination').find("li").siblings().last().find('a').attr('href');
+    $('.pagination-not-laravel li').first().next().find('a').attr('href', linkNext);
+    
+});
+
 (function($) {
+    
+    
 
 	skel.breakpoints({
 		xlarge:	'(max-width: 1680px)',

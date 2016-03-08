@@ -51,7 +51,7 @@ class UserController extends Controller
         
         $user->save();
         
-        return redirect('blogs');
+        return redirect('posts');
     }
 
     /**
@@ -101,7 +101,7 @@ class UserController extends Controller
         
         $user->save();
         
-        return redirect('blogs');
+        return redirect('posts');
     }
 
     /**

@@ -1,8 +1,9 @@
 @extends('template')
 <?php $user = \App\Models\User::where('admin_status', '=', '0')?>
     @section('content')
-    <article class="post">
+    
     @foreach($posts as $post)
+<article class="post">
         <header>
             <div class="title">
                 <h2><a href="{{url('posts/'.$post->id)}}">{{$post->title}}</a></h2>
@@ -16,9 +17,12 @@
         </header>
         <a href="{{url('posts/'.$post->id)}}" class="image featured"><img src="{{url('images/'.$post->photo)}}" alt="" /></a>
         <p>{{$post->content}}</p>
-                                        
+ </article>                                       
     @endforeach
-        
-</article>
-											
+    <ul class="actions pagination-not-laravel">
+        <li><a href="m" class="disabled button big previous">Previous Page</a></li>
+        <li><a href="#" class="button big next">Next Page</a></li>
+    </ul>
+	{!! $posts->links() !!}	
+
     @stop

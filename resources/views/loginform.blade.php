@@ -13,7 +13,8 @@
         {!! Form::password('password'); !!}
         {!! $errors->first('password', '<p class="error">:message</p>')!!}
             <br>
-        {!! Form::submit('Login');   !!}
+        {!! Form::submit('Login');   !!} 
+        <a href="{{url('users/create')}}" class="button">Register</a>
         {!! Form::close() !!}
     </article>
 

@@ -4,6 +4,7 @@
 		<title>Future Imperfect</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="{{asset('css/main.css')}}" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
@@ -16,7 +17,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="{{url('blogs')}}">Future Imperfect</a></h1>
+						<h1><a href="{{url('posts')}}">Future Imperfect</a></h1>
 						<nav class="links">
 							<ul>
                                 @if(!Auth::check())
@@ -25,6 +26,7 @@
                                 @else
                                 <li><a href="{{url('logout')}}">Logout</a></li>
                                 <li><a href="{{url('users/'.Auth::user()->id)}}">User Details</a></li>
+                                <li><a href="{{url('posts/create')}}">New Post</a></li>
                                 @endif
 								
 								
@@ -91,7 +93,7 @@
 
 						<!-- Intro -->
 							<section id="intro">
-								<a href="#" class="logo"><img src="{{url('images/logo.jpg')}}" alt="" /></a>
+								<a href="{{url('posts')}}" class="logo"><img src="{{url('images/logo.jpg')}}" alt="" /></a>
 								<header>
 									<h2>Future Imperfect</h2>
 									<p>Another fine responsive site template in HTML5</a></p>

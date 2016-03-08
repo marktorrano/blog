@@ -27,7 +27,6 @@ Route::group(['middleware' => ['web']], function () {
     //
     
     Route::get('/', function () {
-        return view('welcome');
     });
     
     Route::resource('posts', "PostController");
@@ -37,12 +36,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('login', "LoginController@showLoginForm");    
     Route::post('login', "LoginController@processLogin");    
     Route::get('logout', "LoginController@logout");
-    
-    Route::get('blogs', function(){
-        
-        $posts = App\Models\Post::all();
-        
-        return view('browseblog', ['posts'=>$posts]);
-    });
     
 });

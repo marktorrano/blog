@@ -2,7 +2,7 @@
                            
    @section('content')
     <article class="post">
-        <h2>Create Post</h2>
+        <h2>Edit Post</h2>
         {!! Form::model($post, array('url' => 'posts/'.$post->id, 'method'=>'put', 'files' => 'true', 'enctype' => "multipart/form-data")) !!}
         {!! Form::label('title', 'Title'); !!}
         {!! Form::text('title'); !!}
@@ -18,6 +18,7 @@
             <br>
         {!! Form::label('photo','Photo',array('id'=>'','class'=>'')) !!}
         {!! Form::file('photo','',array('id'=>'','class'=>'')) !!}
+        {!! $errors->first('photo', '<p class="error">:message</p>')!!}
             <br>
         {!! Form::submit('Update');   !!}
         {!! Form::close() !!}

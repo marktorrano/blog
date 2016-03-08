@@ -16,6 +16,9 @@ use Carbon\Carbon;
 
 class PostController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth', ['only'=>['store','create','edit','update','delete','show']]);   
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +27,9 @@ class PostController extends Controller
     public function index()
     {
         //
+        $posts = Post::paginate(1);
+        
+        return view('browseblog', ['posts'=>$posts]);
     }
 
     /**
@@ -52,15 +58,17 @@ class PostController extends Controller
         
         $newName = "photo". $post->id . ".jpg";
         
-//        $request->file('photo')->move('images', $newName);
+        $request->file('photo')->move('images', $newName);
         
-        $post->photo = 'pic01.jpg';
+        $post->photo = $newName;
         
-//        $post->created_at = Carbon::now();
+        $post->created_at = Carbon::now();
+        
+        $post->deleted_at = null;
         
         $post->save();
         
-        return redirect('blogs');
+        return redirect('posts');
     }
 
     /**
@@ -107,9 +115,11 @@ class PostController extends Controller
         
         $newName = "photo". $post->id. ".jpg";
         
-//        $request->file('photo')->move("images", $newName);
+        $request->file('photo')->move("images", $newName);
         
-        $post->photo = 'pic01.jpg';   
+        $post->photo = $newName;   
+        
+        $post->updated_at = Carbon::now();
         
         $post->save();
         
@@ -125,5 +135,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::find($id);
+        
+        $post->delete();
+        
+        return redirect('posts');
+        
     }
 }

@@ -1690,9 +1690,19 @@
 
 /* Button */
 
+.delete{
+    position: absolute;
+    right: 7em;
+}
+
+    input[type="file"] {
+        opacity: 0;
+    }
+
+
 	input[type="submit"],
 	input[type="reset"],
-	input[type="button"],
+	input[type="button"],    
 	button,
 	.button {
 		-moz-appearance: none;
@@ -2564,6 +2574,23 @@
 		}
 
 /* Post */
+/* Laravel Pagination fix */
+
+
+.diffForHumans{
+    font-size: .7em;
+    clear: both;
+}
+
+.comments {
+    border: 1px #eee solid;
+    padding: 1em;
+    border-radius: 3px;
+}
+    .pagination {
+
+        display: none;
+    }
 
 	.post {
 		padding: 3em 3em 1em 3em ;

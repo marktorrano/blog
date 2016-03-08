@@ -23,7 +23,7 @@ class LoginController extends Controller
                 
         if(\Auth::attempt($credential)){
             
-            return redirect('blogs');
+            return redirect('posts');
         }else{
             
             return redirect('login')->with('message', 'Try again');

@@ -27,7 +27,8 @@ class CreatePostRequest extends Request
             //
             'title'=>'required',
             'subtitle'=>'required',
-            'content'=>'required'
+            'content'=>'required',
+            'photo'=>'required'
         ];
     }
     
@@ -36,7 +37,8 @@ class CreatePostRequest extends Request
         return [
             'title.required'=>'Cannot be empty',
             'subtitle.required'=>'Cannot be empty',
-            'content.required'=>'Cannot be empty'            
+            'content.required'=>'Cannot be empty' ,
+            'photo.required'=>'Please choose a photo'
         ];
     }
     

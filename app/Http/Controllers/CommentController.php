@@ -40,16 +40,16 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCommentRequest $request)
     {
         //
         $comment = Comment::create($request->all());
         
         $comment->save();
         
-        $post = Post::find($request->post_id);
+//        $post = Post::find($request->post_id);
         
-        return view('showpost' , ['post'=>$post]);
+        return "success";
         
     }
 
@@ -95,6 +95,10 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::find($id);
+        
+        $comment->delete();
+        
+        return redirect('posts');
     }
 }

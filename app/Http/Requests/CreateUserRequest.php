@@ -29,8 +29,9 @@ class CreateUserRequest extends Request
             'username'=>'required|unique:users,username,'. $this->route('users'),
             'firstname'=>'required',
             'lastname'=>'required',
-            'email'=>'required|unique:users,email,',
-            'password'=>'required'
+            'email'=>'required|email|unique:users,email,',
+            'password'=>'required',
+            'photo'=>'required'
         ];
     }
     
@@ -39,13 +40,14 @@ class CreateUserRequest extends Request
         return [
             //
             
-            'username.required'=>'Fill this up',
-            'username.unique'=>'Already taken',
-            'firstname.required'=>'Fill this up',
-            'lastname.required'=>'Fill this up',
-            'email.required'=>'Fill this up',
+            'username.required'=>'You need a username',
+            'username.unique'=>'Sorry, already taken',
+            'firstname.required'=>'The owner need to know your name',
+            'lastname.required'=>'What? No last name?',
+            'email.required'=>'Let me know that you are real',
             'email.unique'=>'Already taken',            
-            'password.required'=>'Fill this up'
+            'password.required'=>'Everyone needs a password',
+            'photo.required'=>'Please choose a photo'
         ];
     }
 }

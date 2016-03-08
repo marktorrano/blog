@@ -15,10 +15,14 @@
         {!! Form::label('lastname', 'Last Name'); !!}
         {!! Form::text('lastname'); !!}
         {!! $errors->first('lastname', '<p class="error">:message</p>')!!}
-            <br>
+            <br>        
         {!! Form::label('email', 'Email'); !!}
         {!! Form::text('email'); !!}
         {!! $errors->first('email', '<p class="error">:message</p>')!!}
+            <br/>
+        {!! Form::label('photo','Upload Photo',array('id'=>'','class'=>'button')) !!}
+        {!! $errors->first('photo', '<p class="error">:message</p>')!!}
+        {!! Form::file('photo','',array('id'=>'','class'=>'')) !!}
             <br>
 
         {!! Form::submit('Update');   !!}

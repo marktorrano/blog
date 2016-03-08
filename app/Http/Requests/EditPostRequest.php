@@ -26,7 +26,8 @@ class EditPostRequest extends Request
         return [
             'title'=>'required',
             'subtitle'=>'required',
-            'content'=>'required'
+            'content'=>'required',
+            'photo'=>'required'
         ];
     }
     
@@ -35,7 +36,8 @@ class EditPostRequest extends Request
         return [
             'title.required'=>'Cannot be empty',
             'subtitle.required'=>'Cannot be empty',
-            'content.required'=>'Cannot be empty'
+            'content.required'=>'Cannot be empty',
+            'photo.required'=>'Please upload a photo'
         ];
     }
 }

@@ -16,7 +16,8 @@
         {!! Form::textarea('content'); !!}
         {!! $errors->first('content', '<p class="error">:message</p>')!!}
             <br>
-        {!! Form::label('photo','Photo',array('id'=>'','class'=>'')) !!}
+        {!! Form::label('photo','Photo',array('id'=>'','class'=>'button')) !!}
+        {!! $errors->first('photo', '<p class="error">:message</p>')!!}
         {!! Form::file('photo','',array('id'=>'','class'=>'')) !!}
             <br>
         {!! Form::submit('Post');   !!}

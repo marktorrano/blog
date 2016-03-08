@@ -31,7 +31,8 @@
         {!! Form::label('password_confirmation', 'Confirm Password'); !!}
         {!! Form::password('password_confirmation'); !!}
             <br>
-        {!! Form::label('photo','Photo',array('id'=>'','class'=>'')) !!}
+        {!! Form::label('photo','Choose Photo',array('id'=>'','class'=>'button')) !!}
+        {!! $errors->first('photo', '<p class="error">:message</p>')!!}
         {!! Form::file('photo','',array('id'=>'','class'=>'')) !!}
             <br>
         {!! Form::submit('Register');   !!}

@@ -11,7 +11,7 @@
         <p>{{$user->email}}</p>
         <h3>Username</h3>
         <p>{{$user->username}}</p>
-        <a href="{{url('users/'.$user->id.'/edit')}}">edit</a>
+        <a href="{{url('users/'.$user->id.'/edit')}}" class="button">edit</a>
 
 
     </article>
