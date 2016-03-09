@@ -97,7 +97,11 @@ class UserController extends Controller
         
         $user->fill($request->all());
         
-        $user->avatar_photo = "pic01.jpg";
+        $newName = "photo". $post->id . ".jpg";
+        
+        $request->file('photo')->move('images', $newName);
+        
+        $user->avatar_photo = $newName;
         
         $user->save();
         

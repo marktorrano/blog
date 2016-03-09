@@ -26,7 +26,9 @@
                                 @else
                                 <li><a href="{{url('logout')}}">Logout</a></li>
                                 <li><a href="{{url('users/'.Auth::user()->id)}}">User Details</a></li>
-                                <li><a href="{{url('posts/create')}}">New Post</a></li>
+                                    @if(Auth::user()->admin_status == 1)
+                                    <li><a href="{{url('posts/create')}}">New Post</a></li>
+                                    @endif
                                 @endif
 								
 								
@@ -72,9 +74,9 @@
 											<h3>User Details</h3>
 										</a>
 									</li>
-									<li>
-										<a href="{{url('posts/create')}}"><h3>New Post</h3></a>
-									</li>
+									@if(Auth::user()->admin_status == 1)
+                                    <li><a href="{{url('posts/create')}}">New Post</a></li>
+                                    @endif
 									
 								@endif
 									

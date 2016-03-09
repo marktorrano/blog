@@ -48,6 +48,7 @@ class CommentController extends Controller
         
         $input = $request->all();
         $input['created_at'] =  $comment->created_at->diffForHumans();
+        $input['comment_id'] = $comment->id;
                             
         return $input;
         
@@ -62,6 +63,7 @@ class CommentController extends Controller
     public function show($id)
     {
         //
+        return redirect("posts");
     }
 
     /**
@@ -73,6 +75,7 @@ class CommentController extends Controller
     public function edit($id)
     {
         //
+        return redirect("posts");
     }
 
     /**
@@ -100,6 +103,6 @@ class CommentController extends Controller
         
         $comment->delete();
         
-        return redirect('posts');
+        return "success";
     }
 }

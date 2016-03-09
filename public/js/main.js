@@ -8,8 +8,8 @@ $(document).ready(function(){
     
     $.ajaxSetup({
        headers:  {'X-CSRF-TOKEN': $('[name="_token"]').val()}
-    });
 
+    });
 //    console.log($('time').html());
     
     var momentDate = moment($('time').html());
@@ -32,8 +32,10 @@ $(document).ready(function(){
                     var firstname = response.firstname;
                     var lastname = response.lastname;
                     var created_at = response.created_at;
+                    var comment_id = response.comment_id;
+                    var token = response._token;
                     
-                    var newHtml = '<div class="comments"><h3>'+firstname+' '+lastname+'</h3><p>'+content+'</p><span class="diffForHumans">'+created_at+'</span></div>';
+                    var newHtml = '<div class="comments"><a class="delete button" href="'+location.origin+'/blog/public/comments/'+comment_id+'">x</a><h3>'+firstname+' '+lastname+'</h3><p>'+content+'</p><span class="diffForHumans">'+created_at+'</span></div>';
                     
                     $('.comments').parent().append(newHtml);
                 }
@@ -43,25 +45,24 @@ $(document).ready(function(){
         });
     });
     
-    $('.delete').click(function () {        
-        $('form').submit(function (e) {
-            e.preventDefault();
-            var formdata = $(this).serialize();  
-            formdata['_token'] = $('input[name=_token]').val();
-            $.ajax({
-                url: '../comments',
-                type: "POST",
-                data: formdata,
-                success: function (response) {
-                    
-                    var newHtml = '<div class="comments"><h3>'+firstname+' '+lastname+'</h3><p>'+content+'</p><span class="diffForHumans">'+created_at+'</span></div>';
-                    
-                    $('.comments').parent().append(newHtml);
-                }
-            });
-            //remove div
+    $('.delete').click(function (e) {
+        
+        e.preventDefault();
+        var url = $(this).attr("href");
+        var data = [];
+        data["_token"] = $('[name="_token"]').val();
+        var link = $(this);
+        $.ajax({
+            url: url,
+            type: "DELETE",
+            data: data,
+            success: function (response) {
+                $(link).parent().remove();
+            }
         });
     });
+    
+    
     
 
     if($('.pagination').find("li").first().find('a').attr('href')){

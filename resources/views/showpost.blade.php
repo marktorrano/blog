@@ -33,9 +33,13 @@
             @foreach($comments as $comment)
             <div class="comments">
                 @if(Auth::user()->admin_status == 1 || (Auth::user()->id == $comment->user->id))
+{{--
                     {!! Form::open(array('url' => 'comments/' .$comment->id, 'method' => 'delete')) !!}
+                    {!! Form::hidden('comment_id', $comment->id)!!}
                     {!! Form::submit('x', ['class' => 'delete'])!!}                
                     {!! Form::close() !!}
+--}}
+                   <a class="delete button" href="{{url('comments/'.$comment->id)}}">x</a>
                 @endif
                 <h3>{{$comment->user->firstname}} {{$comment->user->lastname}} </h3>
                 <p>{{$comment->content}}</p>

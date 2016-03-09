@@ -17,6 +17,7 @@
         </header>
         <a href="{{url('posts/'.$post->id)}}" class="image featured"><img src="{{url('images/'.$post->photo)}}" alt="" /></a>
         <p>{{$post->content}}</p>
+        <a href="{{url('posts/'.$post->id)}}" class="button">Continue Reading</a>
  </article>                                       
     @endforeach
     <ul class="actions pagination-not-laravel">
